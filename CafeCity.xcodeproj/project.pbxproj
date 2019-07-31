@@ -8,22 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		34501FAD22F0425700A5A1E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34501FAC22F0425700A5A1E2 /* AppDelegate.swift */; };
-		34501FAF22F0425700A5A1E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34501FAE22F0425700A5A1E2 /* ViewController.swift */; };
 		34501FB222F0425700A5A1E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34501FB022F0425700A5A1E2 /* Main.storyboard */; };
 		34501FB522F0425700A5A1E2 /* CafeCity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 34501FB322F0425700A5A1E2 /* CafeCity.xcdatamodeld */; };
 		34501FB722F0425900A5A1E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34501FB622F0425900A5A1E2 /* Assets.xcassets */; };
 		34501FBA22F0425900A5A1E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34501FB822F0425900A5A1E2 /* LaunchScreen.storyboard */; };
+		34501FC322F044BC00A5A1E2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34501FC222F044BC00A5A1E2 /* MapViewController.swift */; };
+		34501FC622F044EB00A5A1E2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34501FC522F044EB00A5A1E2 /* MapKit.framework */; };
+		34501FC922F15D4F00A5A1E2 /* MapViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34501FC822F15D4F00A5A1E2 /* MapViewController+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		34501FA922F0425700A5A1E2 /* CafeCity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CafeCity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34501FAC22F0425700A5A1E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		34501FAE22F0425700A5A1E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		34501FB122F0425700A5A1E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		34501FB422F0425700A5A1E2 /* CafeCity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CafeCity.xcdatamodel; sourceTree = "<group>"; };
 		34501FB622F0425900A5A1E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		34501FB922F0425900A5A1E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		34501FBB22F0425900A5A1E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34501FC222F044BC00A5A1E2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		34501FC522F044EB00A5A1E2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		34501FC822F15D4F00A5A1E2 /* MapViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewController+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34501FC622F044EB00A5A1E2 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,7 @@
 			children = (
 				34501FAB22F0425700A5A1E2 /* CafeCity */,
 				34501FAA22F0425700A5A1E2 /* Products */,
+				34501FC422F044EB00A5A1E2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,14 +63,47 @@
 			isa = PBXGroup;
 			children = (
 				34501FAC22F0425700A5A1E2 /* AppDelegate.swift */,
-				34501FAE22F0425700A5A1E2 /* ViewController.swift */,
-				34501FB022F0425700A5A1E2 /* Main.storyboard */,
+				34501FCB22F15E1800A5A1E2 /* View */,
+				34501FC722F0468F00A5A1E2 /* Storyboard */,
+				34501FC122F0439A00A5A1E2 /* Controller */,
 				34501FB622F0425900A5A1E2 /* Assets.xcassets */,
-				34501FB822F0425900A5A1E2 /* LaunchScreen.storyboard */,
 				34501FBB22F0425900A5A1E2 /* Info.plist */,
 				34501FB322F0425700A5A1E2 /* CafeCity.xcdatamodeld */,
 			);
 			path = CafeCity;
+			sourceTree = "<group>";
+		};
+		34501FC122F0439A00A5A1E2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				34501FC222F044BC00A5A1E2 /* MapViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		34501FC422F044EB00A5A1E2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				34501FC522F044EB00A5A1E2 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		34501FC722F0468F00A5A1E2 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				34501FB022F0425700A5A1E2 /* Main.storyboard */,
+				34501FB822F0425900A5A1E2 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		34501FCB22F15E1800A5A1E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				34501FC822F15D4F00A5A1E2 /* MapViewController+Ext.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,6 +138,11 @@
 				TargetAttributes = {
 					34501FA822F0425700A5A1E2 = {
 						CreatedOnToolsVersion = 10.3;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -138,9 +182,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34501FAF22F0425700A5A1E2 /* ViewController.swift in Sources */,
 				34501FAD22F0425700A5A1E2 /* AppDelegate.swift in Sources */,
+				34501FC322F044BC00A5A1E2 /* MapViewController.swift in Sources */,
 				34501FB522F0425700A5A1E2 /* CafeCity.xcdatamodeld in Sources */,
+				34501FC922F15D4F00A5A1E2 /* MapViewController+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
