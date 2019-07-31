@@ -14,21 +14,30 @@ class MapViewController: UIViewController {
     // MARK: - Property
     
     //View
-    var myMapView: MKMapView? {
+    var myMapView: MKMapView! {
         didSet{
-            myMapView?.translatesAutoresizingMaskIntoConstraints = false
+            myMapView.translatesAutoresizingMaskIntoConstraints = false
         }
     }
-    var searchButton: UIButton? {
+    var searchButton: UIButton! {
         didSet{
-            searchButton?.translatesAutoresizingMaskIntoConstraints = false
+            searchButton.translatesAutoresizingMaskIntoConstraints = false
         }
     }
-    var arViewbutton: UIButton? {
+    var arViewbutton: UIButton! {
         didSet{
-            arViewbutton?.translatesAutoresizingMaskIntoConstraints = false
+            arViewbutton.translatesAutoresizingMaskIntoConstraints = false
         }
     }
+    var myLocationButton: UIButton! {
+        didSet{
+            myLocationButton.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    
+    
+    
+    
     
     // MARK: - Life Circle
     
@@ -41,7 +50,6 @@ class MapViewController: UIViewController {
         self.setupView()
         self.setupConstaints()
         
-
     }
     
     

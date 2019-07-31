@@ -16,8 +16,9 @@ extension MapViewController {
     func buildingView()
     {
         self.myMapView = MKMapView()
-        self.searchButton = UIButton(type: .roundedRect)
-        self.arViewbutton = UIButton()
+        self.searchButton = UIButton(type: .system)
+        self.arViewbutton = UIButton(type: .system)
+        self.myLocationButton = UIButton(type: .system)
     }
     
     func customBuilding()
@@ -25,14 +26,17 @@ extension MapViewController {
         self.myMapViewCustomBuliding()
         self.searchButtonCustomBuliding()
         self.arViewButtonCustomBuliding()
+        self.myMapViewCustomBuliding()
+        self.myLoactionButtonCustomBuliding()
     }
     
     func setupView()
     {
         
-        self.view.addSubview(self.myMapView!)
-        self.myMapView?.addSubview(self.searchButton!)
-        self.myMapView?.addSubview(self.arViewbutton!)
+        self.view.addSubview(self.myMapView)
+        self.myMapView.addSubview(self.searchButton)
+        self.myMapView.addSubview(self.arViewbutton)
+        self.myMapView.addSubview(self.myLocationButton)
         
     }
     
@@ -41,6 +45,7 @@ extension MapViewController {
         self.setupMyMapViewConstraint()
         self.setupSearchButtonConstraint()
         self.setupArViewButtonConstraint()
+        self.setupmyLocationButtonConstraint()
     }
     
     
@@ -53,17 +58,35 @@ extension MapViewController {
     
     func searchButtonCustomBuliding()
     {
-        searchButton?.layer.cornerRadius = 40 / 2
-        searchButton?.clipsToBounds = true
-        searchButton?.backgroundColor = .black
+        searchButton.layer.cornerRadius = 40 / 2
+        searchButton.clipsToBounds = true
+        searchButton.backgroundColor = .init(red: 242/255, green: 110/255, blue: 80/255, alpha: 1)
+        
+        let searchImage = UIImage(named: "search")?.withRenderingMode(.alwaysOriginal)
+        searchButton.frame.size = searchImage!.size
+        
+        
+        searchButton.setImage(searchImage ,for: .normal)
+        
         
     }
     
     func arViewButtonCustomBuliding()
     {
-        arViewbutton?.layer.cornerRadius = 44 / 2
-        arViewbutton?.clipsToBounds = true
-        arViewbutton?.backgroundColor = .black
+        arViewbutton.layer.cornerRadius = 44 / 2
+        arViewbutton.clipsToBounds = true
+        
+        arViewbutton.backgroundColor = .init(red: 242/255, green: 110/255, blue: 80/255, alpha: 1)
+        arViewbutton.layer.borderWidth = 2
+        arViewbutton.layer.borderColor = UIColor.white.cgColor
+        arViewbutton.setTitle("AR模式", for: .normal)
+    }
+    
+    func myLoactionButtonCustomBuliding()
+    {
+        myLocationButton.backgroundColor = .black
+        myLocationButton.layer.cornerRadius = 35 / 2
+        myLocationButton.clipsToBounds = true
     }
     
     
@@ -104,7 +127,21 @@ extension MapViewController {
         
         NSLayoutConstraint.activate(constraints)
     }
+    
+    func setupmyLocationButtonConstraint()
+    {
+        var constraints = [NSLayoutConstraint]()
+        
+        constraints.append( NSLayoutConstraint(item: self.myLocationButton!, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1, constant: -30) )
+        constraints.append( NSLayoutConstraint(item: self.myLocationButton!, attribute: .bottom, relatedBy: .equal, toItem: self.arViewbutton, attribute: .top, multiplier: 1, constant: -30) )
+       
+        
+        constraints.append( NSLayoutConstraint(item: self.myLocationButton!, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 35))
+        constraints.append( NSLayoutConstraint(item: self.myLocationButton!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 35))
 
+        
+        NSLayoutConstraint.activate(constraints)
+    }
 
     /*
     // MARK: - Navigation
