@@ -40,7 +40,6 @@ class MapViewController: UIViewController {
     
     
     // MARK: - Life Circle
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -53,7 +52,13 @@ class MapViewController: UIViewController {
     }
     
     
-
+    // MARK: - Common
+    
+    func buttonDidSelected(sender: UIButton?)
+    {
+        print(sender! )
+    }
+    
     
     /*
     // MARK: - Navigation

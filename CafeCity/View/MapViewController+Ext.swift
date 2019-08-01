@@ -60,14 +60,12 @@ extension MapViewController {
     {
         searchButton.layer.cornerRadius = 40 / 2
         searchButton.clipsToBounds = true
-        searchButton.backgroundColor = .init(red: 242/255, green: 110/255, blue: 80/255, alpha: 1)
+        searchButton.backgroundColor = .white
         
-        let searchImage = UIImage(named: "search")?.withRenderingMode(.alwaysOriginal)
-        searchButton.frame.size = searchImage!.size
+        searchButton.setImage(UIImage(named: "search")?.withRenderingMode(.alwaysOriginal) ,for: .normal)
+        searchButton.frame.size = CGSize(width: 64.0, height: 64.0)
         
-        
-        searchButton.setImage(searchImage ,for: .normal)
-        
+        searchButton.addTarget(self, action: #selector("buttonDidSelected:"), for: .touchDown)
         
     }
     
@@ -79,14 +77,20 @@ extension MapViewController {
         arViewbutton.backgroundColor = .init(red: 242/255, green: 110/255, blue: 80/255, alpha: 1)
         arViewbutton.layer.borderWidth = 2
         arViewbutton.layer.borderColor = UIColor.white.cgColor
+        
+        arViewbutton.setTitleColor(.white, for: .normal)
         arViewbutton.setTitle("AR模式", for: .normal)
     }
     
     func myLoactionButtonCustomBuliding()
     {
-        myLocationButton.backgroundColor = .black
+        myLocationButton.backgroundColor = .white
         myLocationButton.layer.cornerRadius = 35 / 2
         myLocationButton.clipsToBounds = true
+//        myLocationButton.backgroundColor = .init(red: 242/255, green: 228/255, blue: 187/255, alpha: 1)
+        myLocationButton.frame.size = CGSize(width: 64.0, height: 64.0)
+        myLocationButton.setImage(UIImage(named: "GPS")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        myLocationButton.setImage(UIImage(named: "GPS-lighted")?.withRenderingMode(.alwaysOriginal), for: .highlighted)
     }
     
     
@@ -97,7 +101,7 @@ extension MapViewController {
         
         constraints.append( NSLayoutConstraint(item: self.myMapView!, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 0) )
         constraints.append( NSLayoutConstraint(item: self.myMapView!, attribute: .left, relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1, constant: 0) )
-        constraints.append( NSLayoutConstraint(item: self.myMapView!, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1, constant: 0) )
+        constraints.append( NSLayoutConstraint(item: self.myMapView!, attribute: .bottom, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0) )
         constraints.append( NSLayoutConstraint(item: self.myMapView!, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1, constant: 0) )
         
         NSLayoutConstraint.activate(constraints)

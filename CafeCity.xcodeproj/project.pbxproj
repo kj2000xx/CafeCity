@@ -64,6 +64,7 @@
 			children = (
 				34501FAC22F0425700A5A1E2 /* AppDelegate.swift */,
 				34501FC722F0468F00A5A1E2 /* Storyboard */,
+				34501FCD22F2BE2800A5A1E2 /* Model */,
 				34501FCB22F15E1800A5A1E2 /* View */,
 				34501FC122F0439A00A5A1E2 /* Controller */,
 				34501FB622F0425900A5A1E2 /* Assets.xcassets */,
@@ -104,6 +105,13 @@
 				34501FC822F15D4F00A5A1E2 /* MapViewController+Ext.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		34501FCD22F2BE2800A5A1E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
