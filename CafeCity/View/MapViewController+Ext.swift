@@ -52,8 +52,7 @@ extension MapViewController {
     // MARK: - CustomBuilding
     func myMapViewCustomBuliding()
     {
-        
-        
+        self.myMapView.showsUserLocation = true
     }
     
     func searchButtonCustomBuliding()
@@ -62,10 +61,16 @@ extension MapViewController {
         searchButton.clipsToBounds = true
         searchButton.backgroundColor = .white
         
+        searchButton.layer.borderWidth = 2.5
+        searchButton.layer.borderColor = UIColor.init(red: 242/255, green: 110/255, blue: 80/255, alpha: 1).cgColor
+//        searchButton.layer.borderColor =
+        
         searchButton.setImage(UIImage(named: "search")?.withRenderingMode(.alwaysOriginal) ,for: .normal)
         searchButton.frame.size = CGSize(width: 64.0, height: 64.0)
         
-        searchButton.addTarget(self, action: #selector("buttonDidSelected:"), for: .touchDown)
+        searchButton.tag = MyButtonTagName.search.rawValue
+        searchButton.addTarget(self, action: #selector(buttonDidpressed), for: .touchUpInside)
+        
         
     }
     
@@ -80,6 +85,9 @@ extension MapViewController {
         
         arViewbutton.setTitleColor(.white, for: .normal)
         arViewbutton.setTitle("AR模式", for: .normal)
+        
+        arViewbutton.tag = MyButtonTagName.arView.rawValue
+        arViewbutton.addTarget(self, action: #selector(buttonDidpressed), for: .touchUpInside)
     }
     
     func myLoactionButtonCustomBuliding()
@@ -87,10 +95,13 @@ extension MapViewController {
         myLocationButton.backgroundColor = .white
         myLocationButton.layer.cornerRadius = 35 / 2
         myLocationButton.clipsToBounds = true
-//        myLocationButton.backgroundColor = .init(red: 242/255, green: 228/255, blue: 187/255, alpha: 1)
+
         myLocationButton.frame.size = CGSize(width: 64.0, height: 64.0)
         myLocationButton.setImage(UIImage(named: "GPS")?.withRenderingMode(.alwaysOriginal), for: .normal)
         myLocationButton.setImage(UIImage(named: "GPS-lighted")?.withRenderingMode(.alwaysOriginal), for: .highlighted)
+        
+        myLocationButton.tag = MyButtonTagName.myLocation.rawValue
+        myLocationButton.addTarget(self, action: #selector(buttonDidpressed), for: .touchUpInside)
     }
     
     
@@ -99,7 +110,7 @@ extension MapViewController {
     {
         var constraints = [NSLayoutConstraint]()
         
-        constraints.append( NSLayoutConstraint(item: self.myMapView!, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 0) )
+        constraints.append( NSLayoutConstraint(item: self.myMapView!, attribute: .top, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .top, multiplier: 1, constant: 0) )
         constraints.append( NSLayoutConstraint(item: self.myMapView!, attribute: .left, relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1, constant: 0) )
         constraints.append( NSLayoutConstraint(item: self.myMapView!, attribute: .bottom, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0) )
         constraints.append( NSLayoutConstraint(item: self.myMapView!, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1, constant: 0) )

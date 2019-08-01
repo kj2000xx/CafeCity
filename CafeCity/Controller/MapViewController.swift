@@ -9,9 +9,17 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, CLLocationManagerDelegate {
     
-    // MARK: - Property
+    enum MyButtonTagName: Int {
+        case search = 0
+        case arView = 1
+        case myLocation = 2
+    }
+    
+    //Property
+    let myAppdelegate = UIApplication.shared.delegate as! AppDelegate
+    
     
     //View
     var myMapView: MKMapView! {
@@ -36,9 +44,6 @@ class MapViewController: UIViewController {
     }
     
     
-    
-    
-    
     // MARK: - Life Circle
     override func viewDidLoad()
     {
@@ -49,25 +54,126 @@ class MapViewController: UIViewController {
         self.setupView()
         self.setupConstaints()
         
+        myAppdelegate.myLocationManger.delegate = self
+        self.tryGoToMyLocation()
     }
     
     
     // MARK: - Common
     
-    func buttonDidSelected(sender: UIButton?)
+    @objc func buttonDidpressed(sender: UIButton?)
     {
-        print(sender! )
+        switch sender?.tag {
+        case MyButtonTagName.search.rawValue:
+            print(String(sender!.tag))
+            
+            
+        case MyButtonTagName.arView.rawValue:
+            print(String(sender!.tag))
+            
+            
+        case MyButtonTagName.myLocation.rawValue:
+            print(String(sender!.tag))
+            
+            self.tryGoToMyLocation()
+            
+        default:
+            print("button pressed failed")
+            
+        }
+        
+    }
+    
+    func tryGoToMyLocation()
+    {
+        if CLLocationManager.locationServicesEnabled() {
+            
+            switch CLLocationManager.authorizationStatus() {
+            case .restricted, .denied:
+                print("No access")
+                
+                let alertMessage = UIAlertController(title: "Location Services Disabled", message: "You need to enable location services in settings.", preferredStyle: .alert)
+                
+                alertMessage.addAction(UIAlertAction(title: "Okay!", style: .default, handler: { (action: UIAlertAction!) in
+                    
+                    let schemeString = UIApplication.openSettingsURLString
+                    
+                    self.openURL(scheme: schemeString )
+                }))
+                
+                present(alertMessage, animated: true, completion: nil)
+                
+            case .authorizedAlways, .authorizedWhenInUse:
+                self.goToMyLocation()
+                
+            case .notDetermined:
+                print("asking for access...")
+                myAppdelegate.myLocationManger.requestAlwaysAuthorization()
+                
+            @unknown default:
+                fatalError()
+            }
+            
+        } else {
+            
+            let alertMessage = UIAlertController(title: "Location Services Disabled", message: "You need to enable location services in settings.", preferredStyle: .alert)
+            
+            alertMessage.addAction(UIAlertAction(title: "Okay!", style: .default, handler: { (action: UIAlertAction!) in
+                
+                let schemeString = "App-Prefs:root=Privacy&path=LOCATION"
+                
+                self.openURL(scheme: schemeString )
+            }))
+            
+            present(alertMessage, animated: true, completion: nil)
+        }
+    }
+    
+    func goToMyLocation()
+    {
+        let myLocationManger = myAppdelegate.myLocationManger
+        
+        myLocationManger.desiredAccuracy = kCLLocationAccuracyBest
+        myLocationManger.distanceFilter = 1
+        
+        var aSpan = MKCoordinateSpan()
+        aSpan.latitudeDelta = 0.01
+        aSpan.longitudeDelta = 0.01
+        
+        var aRegion = MKCoordinateRegion()
+        aRegion.center = myLocationManger.location!.coordinate
+        aRegion.span = aSpan
+        
+        self.myMapView.setRegion(aRegion, animated: false)
+        
+    }
+    
+    
+    // MARK: - Helper
+    func openURL(scheme: String) {
+        if let url = URL(string: scheme) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url, options: [:],
+                                          completionHandler: {
+                                            (success) in
+                                            print("Open \(scheme): \(success)")
+                })
+            } else {
+                let success = UIApplication.shared.openURL(url)
+                print("Open \(scheme): \(success)")
+            }
+        }
     }
     
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

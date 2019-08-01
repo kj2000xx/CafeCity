@@ -15,6 +15,7 @@
 		34501FC322F044BC00A5A1E2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34501FC222F044BC00A5A1E2 /* MapViewController.swift */; };
 		34501FC622F044EB00A5A1E2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34501FC522F044EB00A5A1E2 /* MapKit.framework */; };
 		34501FC922F15D4F00A5A1E2 /* MapViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34501FC822F15D4F00A5A1E2 /* MapViewController+Ext.swift */; };
+		34501FCF22F2D6C100A5A1E2 /* CafeNomadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34501FCE22F2D6C100A5A1E2 /* CafeNomadModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		34501FC222F044BC00A5A1E2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		34501FC522F044EB00A5A1E2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		34501FC822F15D4F00A5A1E2 /* MapViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewController+Ext.swift"; sourceTree = "<group>"; };
+		34501FCE22F2D6C100A5A1E2 /* CafeNomadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeNomadModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 		34501FCD22F2BE2800A5A1E2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				34501FCE22F2D6C100A5A1E2 /* CafeNomadModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				34501FAD22F0425700A5A1E2 /* AppDelegate.swift in Sources */,
 				34501FC322F044BC00A5A1E2 /* MapViewController.swift in Sources */,
 				34501FB522F0425700A5A1E2 /* CafeCity.xcdatamodeld in Sources */,
+				34501FCF22F2D6C100A5A1E2 /* CafeNomadModel.swift in Sources */,
 				34501FC922F15D4F00A5A1E2 /* MapViewController+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
