@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C71EAFB1E6C72A3E76C9326 /* Pods_CafeCity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C3BB7D7D7CFB918F50484A /* Pods_CafeCity.framework */; };
 		34501FAD22F0425700A5A1E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34501FAC22F0425700A5A1E2 /* AppDelegate.swift */; };
 		34501FB222F0425700A5A1E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34501FB022F0425700A5A1E2 /* Main.storyboard */; };
 		34501FB522F0425700A5A1E2 /* CafeCity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 34501FB322F0425700A5A1E2 /* CafeCity.xcdatamodeld */; };
@@ -16,9 +17,12 @@
 		34501FC622F044EB00A5A1E2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34501FC522F044EB00A5A1E2 /* MapKit.framework */; };
 		34501FC922F15D4F00A5A1E2 /* MapViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34501FC822F15D4F00A5A1E2 /* MapViewController+Ext.swift */; };
 		34501FCF22F2D6C100A5A1E2 /* CafeNomadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34501FCE22F2D6C100A5A1E2 /* CafeNomadModel.swift */; };
+		34501FD222F40BCF00A5A1E2 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34501FD122F40BCF00A5A1E2 /* API.swift */; };
+		34501FD422F416BA00A5A1E2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34501FD322F416BA00A5A1E2 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23C3BB7D7D7CFB918F50484A /* Pods_CafeCity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CafeCity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34501FA922F0425700A5A1E2 /* CafeCity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CafeCity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34501FAC22F0425700A5A1E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34501FB122F0425700A5A1E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -30,6 +34,10 @@
 		34501FC522F044EB00A5A1E2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		34501FC822F15D4F00A5A1E2 /* MapViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewController+Ext.swift"; sourceTree = "<group>"; };
 		34501FCE22F2D6C100A5A1E2 /* CafeNomadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeNomadModel.swift; sourceTree = "<group>"; };
+		34501FD122F40BCF00A5A1E2 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		34501FD322F416BA00A5A1E2 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4CED4779C506BBED0BBCB0A3 /* Pods-CafeCity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeCity.release.xcconfig"; path = "Target Support Files/Pods-CafeCity/Pods-CafeCity.release.xcconfig"; sourceTree = "<group>"; };
+		5061B4552C0CDF5222D538D6 /* Pods-CafeCity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafeCity.debug.xcconfig"; path = "Target Support Files/Pods-CafeCity/Pods-CafeCity.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +46,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34501FC622F044EB00A5A1E2 /* MapKit.framework in Frameworks */,
+				1C71EAFB1E6C72A3E76C9326 /* Pods_CafeCity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +59,7 @@
 				34501FAB22F0425700A5A1E2 /* CafeCity */,
 				34501FAA22F0425700A5A1E2 /* Products */,
 				34501FC422F044EB00A5A1E2 /* Frameworks */,
+				64B615F7E5EAB33EA2A2FE78 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +74,7 @@
 		34501FAB22F0425700A5A1E2 /* CafeCity */ = {
 			isa = PBXGroup;
 			children = (
+				34501FD022F40BB500A5A1E2 /* Router */,
 				34501FAC22F0425700A5A1E2 /* AppDelegate.swift */,
 				34501FC722F0468F00A5A1E2 /* Storyboard */,
 				34501FCD22F2BE2800A5A1E2 /* Model */,
@@ -88,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				34501FC522F044EB00A5A1E2 /* MapKit.framework */,
+				23C3BB7D7D7CFB918F50484A /* Pods_CafeCity.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -117,6 +129,24 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		34501FD022F40BB500A5A1E2 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				34501FD122F40BCF00A5A1E2 /* API.swift */,
+				34501FD322F416BA00A5A1E2 /* NetworkManager.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		64B615F7E5EAB33EA2A2FE78 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5061B4552C0CDF5222D538D6 /* Pods-CafeCity.debug.xcconfig */,
+				4CED4779C506BBED0BBCB0A3 /* Pods-CafeCity.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -124,9 +154,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34501FBE22F0425900A5A1E2 /* Build configuration list for PBXNativeTarget "CafeCity" */;
 			buildPhases = (
+				F706CD31FDA8E93E3398A830 /* [CP] Check Pods Manifest.lock */,
 				34501FA522F0425700A5A1E2 /* Sources */,
 				34501FA622F0425700A5A1E2 /* Frameworks */,
 				34501FA722F0425700A5A1E2 /* Resources */,
+				C68131B7F2B0BEBFE8D3D6CA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -188,6 +220,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C68131B7F2B0BEBFE8D3D6CA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CafeCity/Pods-CafeCity-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CafeCity/Pods-CafeCity-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CafeCity/Pods-CafeCity-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F706CD31FDA8E93E3398A830 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CafeCity-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		34501FA522F0425700A5A1E2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -196,7 +270,9 @@
 				34501FAD22F0425700A5A1E2 /* AppDelegate.swift in Sources */,
 				34501FC322F044BC00A5A1E2 /* MapViewController.swift in Sources */,
 				34501FB522F0425700A5A1E2 /* CafeCity.xcdatamodeld in Sources */,
+				34501FD422F416BA00A5A1E2 /* NetworkManager.swift in Sources */,
 				34501FCF22F2D6C100A5A1E2 /* CafeNomadModel.swift in Sources */,
+				34501FD222F40BCF00A5A1E2 /* API.swift in Sources */,
 				34501FC922F15D4F00A5A1E2 /* MapViewController+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +417,7 @@
 		};
 		34501FBF22F0425900A5A1E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5061B4552C0CDF5222D538D6 /* Pods-CafeCity.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -359,6 +436,7 @@
 		};
 		34501FC022F0425900A5A1E2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CED4779C506BBED0BBCB0A3 /* Pods-CafeCity.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

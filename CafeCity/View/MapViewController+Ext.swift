@@ -53,6 +53,8 @@ extension MapViewController {
     func myMapViewCustomBuliding()
     {
         self.myMapView.showsUserLocation = true
+        self.myMapView.userLocation.title = "目前位置"
+
     }
     
     func searchButtonCustomBuliding()
@@ -70,7 +72,7 @@ extension MapViewController {
         
         searchButton.tag = MyButtonTagName.search.rawValue
         searchButton.addTarget(self, action: #selector(buttonDidpressed), for: .touchUpInside)
-        
+        searchButton.addTarget(self, action: #selector(scaleButton), for: .touchDown)
         
     }
     
@@ -88,6 +90,7 @@ extension MapViewController {
         
         arViewbutton.tag = MyButtonTagName.arView.rawValue
         arViewbutton.addTarget(self, action: #selector(buttonDidpressed), for: .touchUpInside)
+        arViewbutton.addTarget(self, action: #selector(scaleButton), for: .touchDown)
     }
     
     func myLoactionButtonCustomBuliding()
@@ -102,6 +105,7 @@ extension MapViewController {
         
         myLocationButton.tag = MyButtonTagName.myLocation.rawValue
         myLocationButton.addTarget(self, action: #selector(buttonDidpressed), for: .touchUpInside)
+        myLocationButton.addTarget(self, action: #selector(scaleButton), for: .touchDown)
     }
     
     

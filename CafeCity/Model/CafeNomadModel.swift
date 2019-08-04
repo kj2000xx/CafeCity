@@ -8,21 +8,21 @@
 
 import Foundation
 
-struct CafeNomad: Codable {
+struct CafeNomadModel: Codable {
     
     var id: String
     var name: String
     var city: String
-    var wifi: Int
-    var seat: Int
-    var quiet: Int
-    var tasty: Int
-    var cheap: Int
-    var music: Int
-    var address: String
-    var latitude: Float
-    var longitude: Float
+    var wifi: Float
+    var seat: Float
+    var quiet: Float
+    var tasty: Float
+    var cheap: Float
+    var music: Float
     var url: String
+    var address: String
+    var latitude: String
+    var longitude: String
     var limited_time: String
     var socket: String
     var standing_desk: String

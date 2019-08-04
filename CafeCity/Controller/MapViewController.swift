@@ -8,8 +8,9 @@
 
 import UIKit
 import MapKit
+import Moya
 
-class MapViewController: UIViewController, CLLocationManagerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate,MKMapViewDelegate {
     
     enum MyButtonTagName: Int {
         case search = 0
@@ -19,6 +20,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     //Property
     let myAppdelegate = UIApplication.shared.delegate as! AppDelegate
+    var cafeNomadArrayModel: [CafeNomadModel]?
+    var cafeAnnotationArrayModel: [MKPointAnnotation]?
     
     
     //View
@@ -54,13 +57,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         self.setupView()
         self.setupConstaints()
         
+        myMapView.delegate = self
+        myMapView.userTrackingMode = .follow
         myAppdelegate.myLocationManger.delegate = self
         self.tryGoToMyLocation()
+        
+        self.callCafeNoMadAPI()
+        
+        
     }
     
     
     // MARK: - Common
-    
     @objc func buttonDidpressed(sender: UIButton?)
     {
         switch sender?.tag {
@@ -82,6 +90,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             
         }
         
+    }
+    
+    @objc func scaleButton(sender: UIButton?)
+    {
+        let scaleTransform = CGAffineTransform.init(scaleX: 0.6, y: 0.6 )
+        sender?.transform = scaleTransform
+        
+        UIView.animate(withDuration: 0.35, delay: 0.12, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.7, options: [], animations: {
+            sender?.transform = .identity
+        }, completion: nil)
     }
     
     func tryGoToMyLocation()
@@ -137,8 +155,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         myLocationManger.distanceFilter = 1
         
         var aSpan = MKCoordinateSpan()
-        aSpan.latitudeDelta = 0.01
-        aSpan.longitudeDelta = 0.01
+        aSpan.latitudeDelta = 0.02
+        aSpan.longitudeDelta = 0.02
         
         var aRegion = MKCoordinateRegion()
         aRegion.center = myLocationManger.location!.coordinate
@@ -146,11 +164,106 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         self.myMapView.setRegion(aRegion, animated: false)
         
+        self.myMapView.removeAnnotations(myMapView.annotations)
+        if let _cafeAnnotationArrayModel = self.cafeAnnotationArrayModel {
+            self.showMapViewAnnotationa(annotations: _cafeAnnotationArrayModel)
+        }
+        
+    }
+    
+    func showMapViewAnnotationa(annotations: [MKPointAnnotation])
+    {
+        
+        for aAnnotation in annotations {
+            
+            if let _aAnnotation = self.isCoodsInRegions(annotation: aAnnotation) {
+                myMapView.addAnnotation(_aAnnotation)
+            }
+        }
+        
+    }
+    
+    func removeOutRegionAnnotationOfMapView(annotations: [MKPointAnnotation])
+    {
+        var outRangeAnnotations = [MKPointAnnotation]()
+        
+        outRangeAnnotations = annotations
+        
+        for aAnnotation in annotations {
+            if let _aAnnotation = self.isCoodsInRegions(annotation: aAnnotation) {
+                outRangeAnnotations.removeAll(where: {$0 == _aAnnotation})
+            }
+        }
+        
+        myMapView.removeAnnotations(outRangeAnnotations)
+    }
+    
+    func appearSearchView()
+    {
+        
     }
     
     
+    // MARK: - Handler
+    func handleCafeNomadAPIModel(data: [CafeNomadModel])
+    {
+        self.cafeNomadArrayModel = data
+        self.syncCafeNomadModelToMyAnnotation(cafeNomadModelArray: data)
+        
+        if let _cafeAnnotationArrayModel = self.cafeAnnotationArrayModel {
+            self.showMapViewAnnotationa(annotations: _cafeAnnotationArrayModel)
+        }
+        
+    }
+    
+    func syncCafeNomadModelToMyAnnotation(cafeNomadModelArray: [CafeNomadModel])
+    {
+        var aAnnotationArray = [MKPointAnnotation]()
+        
+        for cafeModel in cafeNomadModelArray {
+            let aAnnotation = MKPointAnnotation()
+            aAnnotation.coordinate = CLLocationCoordinate2D(latitude: (cafeModel.latitude as NSString).doubleValue, longitude: (cafeModel.longitude as NSString).doubleValue)
+            aAnnotation.title = cafeModel.name
+            
+            aAnnotationArray.append(aAnnotation)
+        }
+        
+        self.cafeAnnotationArrayModel = aAnnotationArray
+        
+    }
+    
+    
+    // MARK: - Call API
+    func callCafeNoMadAPI()
+    {
+        
+        let provier = MoyaProvider<API>()
+        
+        provier.request(.api) { (result) in
+            switch result {
+            case let .success(response):
+                print(response)
+                
+                if let cafeListModel = try? JSONDecoder().decode([CafeNomadModel].self, from: response.data) {
+                    self.handleCafeNomadAPIModel(data: cafeListModel)
+                    
+                } else {
+                    print("CafeNomadModel map failed")
+                }
+                
+            case let .failure(error):
+                print("网络连接失败 + \(error)")
+                
+                break
+            }
+        }
+        
+        
+    }
+    
     // MARK: - Helper
-    func openURL(scheme: String) {
+    func openURL(scheme: String)
+    {
         if let url = URL(string: scheme) {
             if #available(iOS 10, *) {
                 UIApplication.shared.open(url, options: [:],
@@ -165,6 +278,71 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    
+    func isCoodsInRegions(annotation: MKPointAnnotation) -> MKPointAnnotation?
+    {
+        let aAnnotation = annotation
+        var coords = aAnnotation.coordinate
+        
+        
+        var leftDegrees: CLLocationDegrees = myMapView.region.center.longitude - (myMapView.region.span.longitudeDelta / 2.0);
+        let rightDegrees: CLLocationDegrees = myMapView.region.center.longitude + (myMapView.region.span.longitudeDelta / 2.0);
+        let bottomDegrees: CLLocationDegrees = myMapView.region.center.latitude - (myMapView.region.span.latitudeDelta / 2.0);
+        let topDegrees: CLLocationDegrees = myMapView.region.center.latitude + (myMapView.region.span.latitudeDelta / 2.0);
+        
+        if (leftDegrees > rightDegrees)
+        {   // Int'l Date Line in View
+            leftDegrees = -180.0 - leftDegrees;
+            
+            // coords to West of Date Line
+            if (coords.longitude > 0) {
+                coords.longitude = -180.0 - coords.longitude;
+            }
+        }
+        
+        if (leftDegrees <= coords.longitude
+            && coords.longitude <= rightDegrees
+            && bottomDegrees <= coords.latitude
+            && coords.latitude <= topDegrees)
+        {
+            return annotation
+        }
+        
+        return nil
+    }
+    
+    
+    // MARK: - MapView Delegate
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "CafeMarker"
+        
+        
+        if annotation.isKind(of: MKUserLocation.self) {
+            return nil
+        }
+        
+        var annotationView: MKMarkerAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
+        
+        if annotationView == nil {
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        }
+        
+        annotationView?.markerTintColor = .init(red: 242/255, green: 110/255, blue: 80/255, alpha: 1)
+        //            annotationView?.glyphText = "☕️"
+        
+        return annotationView
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool)
+    {
+        
+        mapView.removeAnnotations(mapView.annotations)
+        if let _cafeAnnotationArrayModel = self.cafeAnnotationArrayModel {
+            self.showMapViewAnnotationa(annotations: _cafeAnnotationArrayModel)
+        }
+    }
     
     /*
      // MARK: - Navigation
