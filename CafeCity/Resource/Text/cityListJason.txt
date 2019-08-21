@@ -1,0 +1,17 @@
+{
+    "台北" : "taipei",
+    "嘉義" : "chiayi",
+    "台中" : "taichung",
+    "高雄" : "kaohsiung",
+    "桃園" : "taoyuan",
+    "宜蘭" : "yilan",
+    "彰化" : "changhua",
+    "台南" : "tainan",
+    "花蓮" : "hualien",
+    "基隆" : "keelung",
+    "屏東" : "pingtung",
+    "南投" : "nantou",
+    "雲林" : "yunlin",
+    "台東" : "taitung",
+    "新竹" : "hsinchu",
+}

@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import ARCL
+
 
 extension MapViewController {
     
@@ -64,14 +66,13 @@ extension MapViewController {
         searchButton.backgroundColor = .white
         
         searchButton.layer.borderWidth = 2.5
-        searchButton.layer.borderColor = UIColor.init(red: 242/255, green: 110/255, blue: 80/255, alpha: 1).cgColor
-//        searchButton.layer.borderColor =
+        searchButton.layer.borderColor = UIColor.myColor.mainColor.cgColor
         
         searchButton.setImage(UIImage(named: "search")?.withRenderingMode(.alwaysOriginal) ,for: .normal)
         searchButton.frame.size = CGSize(width: 64.0, height: 64.0)
         
-        searchButton.tag = MyButtonTagName.search.rawValue
-        searchButton.addTarget(self, action: #selector(buttonDidpressed), for: .touchUpInside)
+        searchButton.tag = MapViewButtonTagName.search.rawValue
+        searchButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         searchButton.addTarget(self, action: #selector(scaleButton), for: .touchDown)
         
     }
@@ -81,15 +82,15 @@ extension MapViewController {
         arViewbutton.layer.cornerRadius = 44 / 2
         arViewbutton.clipsToBounds = true
         
-        arViewbutton.backgroundColor = .init(red: 242/255, green: 110/255, blue: 80/255, alpha: 1)
+        arViewbutton.backgroundColor = UIColor.myColor.mainColor
         arViewbutton.layer.borderWidth = 2
         arViewbutton.layer.borderColor = UIColor.white.cgColor
         
         arViewbutton.setTitleColor(.white, for: .normal)
         arViewbutton.setTitle("AR模式", for: .normal)
         
-        arViewbutton.tag = MyButtonTagName.arView.rawValue
-        arViewbutton.addTarget(self, action: #selector(buttonDidpressed), for: .touchUpInside)
+        arViewbutton.tag = MapViewButtonTagName.arView.rawValue
+        arViewbutton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         arViewbutton.addTarget(self, action: #selector(scaleButton), for: .touchDown)
     }
     
@@ -103,8 +104,8 @@ extension MapViewController {
         myLocationButton.setImage(UIImage(named: "GPS")?.withRenderingMode(.alwaysOriginal), for: .normal)
         myLocationButton.setImage(UIImage(named: "GPS-lighted")?.withRenderingMode(.alwaysOriginal), for: .highlighted)
         
-        myLocationButton.tag = MyButtonTagName.myLocation.rawValue
-        myLocationButton.addTarget(self, action: #selector(buttonDidpressed), for: .touchUpInside)
+        myLocationButton.tag = MapViewButtonTagName.myLocation.rawValue
+        myLocationButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         myLocationButton.addTarget(self, action: #selector(scaleButton), for: .touchDown)
     }
     
@@ -154,11 +155,9 @@ extension MapViewController {
         constraints.append( NSLayoutConstraint(item: self.myLocationButton!, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1, constant: -30) )
         constraints.append( NSLayoutConstraint(item: self.myLocationButton!, attribute: .bottom, relatedBy: .equal, toItem: self.arViewbutton, attribute: .top, multiplier: 1, constant: -30) )
        
-        
         constraints.append( NSLayoutConstraint(item: self.myLocationButton!, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 35))
         constraints.append( NSLayoutConstraint(item: self.myLocationButton!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 35))
 
-        
         NSLayoutConstraint.activate(constraints)
     }
 

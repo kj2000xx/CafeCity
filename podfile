@@ -7,5 +7,7 @@ target 'CafeCity' do
 
   # Pods for CafeCity
   pod 'Moya', '~> 13.0'
-
+  pod 'ARCL'
+  pod 'Cosmos'
+  pod 'WKWebViewController'	
 end

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CafeNomadModel: Codable {
+struct CafeNomadAPIModel: Codable {
     
     var id: String
     var name: String
@@ -28,4 +28,15 @@ struct CafeNomadModel: Codable {
     var standing_desk: String
     var mrt: String
     var open_time: String
+    
+//    lazy var averageRate: Double = {
+//        let aver = (wifi + seat + quiet + tasty + cheap + music) / 6
+//        return Double(aver)
+//    }()
+    var averageRate: Double {
+        get {
+            let aver = (wifi + seat + quiet + tasty + cheap + music) / 6
+            return Double(aver)
+        }
+    }
 }
